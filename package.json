@@ -1,0 +1,26 @@
+{
+  "name": "koaRestAPI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^2.2.2",
+    "bluebird": "^3.5.3",
+    "couchbase": "^2.6.1",
+    "etag": "^1.8.1",
+    "express": "^4.16.4",
+    "koa": "^2.6.1",
+    "koa-body": "^4.0.4",
+    "koa-cache-control": "^2.0.0",
+    "koa-conditional-get": "^2.0.0",
+    "koa-etag": "^3.0.0",
+    "koa-router": "^7.4.0"
+  }
+}
