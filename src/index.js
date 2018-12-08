@@ -7,8 +7,8 @@ const BASE_URL = `/api/v1`;
 
 const CB = require('../src/model/couchbaseUtil');
 
-// app.use(bodyParser.urlencoded({extended: false}))
-// app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.get(`${BASE_URL}/companies/`, (req, res) => {
 
@@ -35,12 +35,32 @@ app.get(`${BASE_URL}/company/:id`, (req, res) => {
 
 })
 
-// app.post(`${BASE_URL}/companies`, (req, res) => {
-//     console.log('POST IS CALLED')
-//     console.log(req.body)
-//     res.status = 200
-//     res.send('All good!')
-// })
+app.post(`${BASE_URL}/companies`, (req, res) => {
+    console.log('POST IS CALLED...')
+    console.log(req.body)
+
+    CB.add(req.body.id, req.body)
+        .then(result => res.status = 201)
+        .catch(err => console.log(err));
+
+    // res.status = 200
+    res.send('All good!')
+})
+
+app.put(`${BASE_URL}/company/:id`, (req, res) => {
+console.log(req.params.id)
+console.log(req.body.data)
+
+    CB.update(`COMPANY::${req.params.id}`, req.body.data, req.body.cas)
+        .then(result => res.json({"success":"true"}))
+        .catch(errCode => {
+            res.send('error')
+            // res.status = errCode
+            // res.send = {
+            //     message: "Failed to update!")
+            // }
+        })
+})
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
