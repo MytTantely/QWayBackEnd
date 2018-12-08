@@ -55,10 +55,6 @@ console.log(req.body.data)
         .then(result => res.json({"success":"true"}))
         .catch(errCode => {
             res.send('error')
-            // res.status = errCode
-            // res.send = {
-            //     message: "Failed to update!")
-            // }
         })
 })
 
